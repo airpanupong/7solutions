@@ -1,12 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-
-type Item = {
-  type: "Fruit" | "Vegetable";
-  name: string;
-  timeLeft?: number;
-};
-
+import { Item } from "@/app/_types/components";
+import CreateDataFromAPI from "@/app/_components/create-data-from-api";
 const initialItems: Item[] = [
   { type: "Fruit", name: "Apple" },
   { type: "Vegetable", name: "Broccoli" },
@@ -22,6 +17,7 @@ const initialItems: Item[] = [
 ];
 
 export default function App() {
+  /////////////////Part-1-Auto Delete Todo List/////////////////
   const [mainList, setMainList] = useState<Item[]>(initialItems);
   const [fruitList, setFruitList] = useState<Item[]>([]);
   const [vegetableList, setVegetableList] = useState<Item[]>([]);
@@ -111,7 +107,7 @@ export default function App() {
           {renderButtons(mainList, moveToTypeList)}
         </div>
         <div className="bg-white rounded-2xl shadow-xl p-6">
-          <h2 className="text-2xl font-semibold mb-4 text-green-600">
+          <h2 className="text-2xl font-semibold mb-4 text-red-600">
             Fruits 🍎({fruitList.length})
           </h2>
           {renderButtons(fruitList, returnToMainList)}
@@ -122,6 +118,12 @@ export default function App() {
           </h2>
           {renderButtons(vegetableList, returnToMainList)}
         </div>
+      </div>
+      <div className="mt-10">
+        <h1 className="text-4xl font-bold text-center mb-4 text-gray-800">
+          📝 Create Data From API
+        </h1>
+        <CreateDataFromAPI />
       </div>
     </div>
   );
